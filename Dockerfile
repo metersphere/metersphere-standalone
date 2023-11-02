@@ -1,6 +1,6 @@
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:v3.x as metersphere
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:v3.x as task-runner
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/result-hub:v3.x as result-hub
+FROM metersphere/metersphere:v3.x as metersphere
+FROM metersphere/task-runner:v3.x as task-runner
+FROM metersphere/result-hub:v3.x as result-hub
 
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre
 
