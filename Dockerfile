@@ -1,3 +1,5 @@
+ARG IMG_TAG=v3.x
+
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG} as metersphere
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:${IMG_TAG} as task-runner
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/result-hub:${IMG_TAG} as result-hub
