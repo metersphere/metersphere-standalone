@@ -21,6 +21,7 @@ COPY --from=builder /task-runner /task-runner
 COPY --from=builder /result-hub /result-hub
 
 COPY --from=task-runner /opt/jmeter /opt/jmeter
+COPY --from=task-runner /usr/bin/node_exporter /usr/bin/node_exporter
 
 ENV AB_OFF=true
 ENV MS_VERSION=${MS_VERSION}
