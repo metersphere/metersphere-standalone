@@ -11,7 +11,7 @@ pipeline {
     }
     environment {
         IMAGE_PREFIX = 'registry.cn-qingdao.aliyuncs.com/metersphere'
-        IMAGE_NAME = 'standalone'
+        IMAGE_NAME = 'metersphere-community'
     }
     stages {
         stage('Docker build & push') {
