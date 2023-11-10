@@ -27,7 +27,7 @@ ENV AB_OFF=true
 ENV MS_VERSION=${MS_VERSION}
 
 COPY shells /shells
-RUN chmod +x /shells/start.sh
+RUN chmod +x /shells/*.sh
 
 ENTRYPOINT ["sh", "/shells/start.sh"]
 
