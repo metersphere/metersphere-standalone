@@ -27,7 +27,7 @@ COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 ENV AB_OFF=true
 
 COPY shells /shells
-RUN chmod +x /shells/*.sh && export MS_VERSION=`cat /tmp/MS_VERSION`
+RUN chmod +x /shells/*.sh 
 
 ENTRYPOINT ["sh", "/shells/start.sh"]
 
