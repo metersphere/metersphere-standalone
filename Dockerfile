@@ -1,5 +1,5 @@
 ARG IMG_TAG=v3.x
-ARG MS_VERSION=v3.x
+
 
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG}-community as metersphere
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:${IMG_TAG} as task-runner
@@ -15,6 +15,8 @@ RUN chmod +x /shells/comm.sh && /shells/comm.sh
 
 #
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre
+
+ARG MS_VERSION=v3.x
 
 COPY --from=builder /standalone /standalone  
 COPY --from=builder /metersphere /metersphere
