@@ -17,6 +17,7 @@ FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre
 
 COPY --from=builder /standalone /standalone  
 COPY --from=builder /server /server
+COPY --from=builder /runner /runner
 COPY --from=builder /metersphere /metersphere
 COPY --from=builder /task-runner /task-runner
 COPY --from=builder /result-hub /result-hub
