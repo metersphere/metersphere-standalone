@@ -1,3 +1,5 @@
+#!/bin/sh
+
 while true; do
     ps | grep metersphere.sh | grep -v grep | awk '{print $1}' >/tmp/metersphere.pid
 
