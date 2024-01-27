@@ -27,7 +27,7 @@ COPY --from=task-runner /opt/jmeter /opt/jmeter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
 ENV AB_OFF=true
-ENV MS_PACKAGE_TYPE=${PKG_TYPE}
+ENV MS_PACKAGE_TYPE=community
 
 COPY shells /shells
 RUN chmod +x /shells/*.sh 

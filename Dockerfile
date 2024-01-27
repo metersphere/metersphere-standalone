@@ -28,7 +28,7 @@ COPY --from=task-runner /usr/bin/node_exporter /usr/bin/node_exporter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
 ENV AB_OFF=true
-ENV MS_PACKAGE_TYPE=${PKG_TYPE}
+ENV MS_PACKAGE_TYPE=enterprise
 
 COPY shells /shells
 RUN chmod +x /shells/*.sh 
