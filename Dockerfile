@@ -1,7 +1,8 @@
 ARG IMG_TAG=v3.x
+ARG PKG_TYPE=enterprise
 
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG}-community as metersphere
-FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:${IMG_TAG}-community as task-runner
+FROM registry.cn-qingdao.aliyuncs.com/metersphere/metersphere:${IMG_TAG}-${PKG_TYPE} as metersphere
+FROM registry.cn-qingdao.aliyuncs.com/metersphere/task-runner:${IMG_TAG}-${PKG_TYPE} as task-runner
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/result-hub:${IMG_TAG} as result-hub
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre as builder
 
@@ -27,6 +28,7 @@ COPY --from=task-runner /usr/bin/node_exporter /usr/bin/node_exporter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
 ENV AB_OFF=true
+ENV MS_PACKAGE_TYPE=${PKG_TYPE}
 
 COPY shells /shells
 RUN chmod +x /shells/*.sh 
