@@ -29,6 +29,7 @@ COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
 ENV AB_OFF=true
 ENV MS_PACKAGE_TYPE=enterprise
+ENV JAVA_OPTIONS="-Dfile.encoding=utf-8 -Djava.awt.headless=true --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
 
 COPY shells /shells
 RUN chmod +x /shells/*.sh 
