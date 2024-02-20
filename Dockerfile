@@ -27,6 +27,9 @@ COPY --from=task-runner /opt/jmeter /opt/jmeter
 COPY --from=task-runner /usr/bin/node_exporter /usr/bin/node_exporter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
 
+# 调整classpath顺序
+RUN mv /task-runner/lib/api-test-*.jar /task-runner/lib/api-test.jar
+
 ENV AB_OFF=true
 ENV MS_PACKAGE_TYPE=enterprise
 ENV JAVA_OPTIONS="-Dfile.encoding=utf-8 -Djava.awt.headless=true --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
