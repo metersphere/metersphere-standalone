@@ -17,17 +17,12 @@ RUN chmod +x /shells/comm.sh && /shells/comm.sh
 FROM registry.cn-qingdao.aliyuncs.com/metersphere/alpine-openjdk21-jre
 
 COPY --from=builder /standalone /standalone  
-COPY --from=builder /server /server
-COPY --from=builder /runner /runner
 COPY --from=builder /metersphere /metersphere
 COPY --from=builder /task-runner /task-runner
 COPY --from=builder /result-hub /result-hub
 
 COPY --from=task-runner /opt/jmeter /opt/jmeter
 COPY --from=metersphere /tmp/MS_VERSION /tmp/MS_VERSION
-
-# 调整classpath顺序
-RUN mv /task-runner/lib/api-test-*.jar /task-runner/lib/api-test.jar
 
 ENV AB_OFF=true
 ENV MS_PACKAGE_TYPE=community
