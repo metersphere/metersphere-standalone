@@ -16,14 +16,14 @@ pipeline {
         stage('Community build & push') {
             steps {
                 sh '''#!/bin/bash -xe
-                docker --config /home/metersphere/.docker buildx build  --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} -t ${IMAGE_PREFIX}/metersphere-ce:\${TAG_NAME:-\$BRANCH_NAME} -f Dockerfile.community --platform linux/amd64,linux/arm64 . --push
+                docker --config /home/metersphere/.docker buildx build --no-cache --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} -t ${IMAGE_PREFIX}/metersphere-ce:\${TAG_NAME:-\$BRANCH_NAME} -f Dockerfile.community --platform linux/amd64,linux/arm64 . --push
                 '''
             }
         }
         stage('Enterprise build & push') {
             steps {
                 sh '''#!/bin/bash -xe
-                docker --config /home/metersphere/.docker buildx build  --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} -t ${IMAGE_PREFIX}/metersphere-ee:\${TAG_NAME:-\$BRANCH_NAME} --platform linux/amd64,linux/arm64 . --push
+                docker --config /home/metersphere/.docker buildx build --no-cache --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} -t ${IMAGE_PREFIX}/metersphere-ee:\${TAG_NAME:-\$BRANCH_NAME} --platform linux/amd64,linux/arm64 . --push
                 '''
             }
         }
@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 sh '''#!/bin/bash -xe
-                docker --config /home/metersphere/.docker buildx build  --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} \
+                docker --config /home/metersphere/.docker buildx build --no-cache --build-arg MS_VERSION=\${TAG_NAME:-\$BRANCH_NAME}-\${GIT_COMMIT:0:8} --build-arg IMG_TAG=\${TAG_NAME:-\$BRANCH_NAME} \
                  -t ${IMAGE_PREFIX}/metersphere-ce-allinone:latest \
                  -t ${IMAGE_PREFIX}/metersphere-ce-allinone:\${TAG_NAME:-\$BRANCH_NAME} \
                  -f Dockerfile.all --platform linux/amd64,linux/arm64 . --push
